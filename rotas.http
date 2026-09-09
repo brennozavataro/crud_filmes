@@ -1,0 +1,28 @@
+GET http://localhost:3333/
+
+###
+
+###
+POST http://localhost:3333/create-movies
+Content-Type: application/json
+
+{
+    "name": "Doomsday",
+    "genre": "Ação",
+    "duration": "240",
+    "ageRating": "16"
+}
+
+###
+DELETE http://localhost:3333/delete-movies/1
+###
+
+PUT http://localhost:3333/update-movies/4
+Content-Type: application/json
+
+{
+    "name": "Homem aranha sem volta para casa",
+    "genre": "Ação",
+    "duration": "170",
+    "ageRating": "0"
+}

@@ -1,0 +1,10 @@
+header {
+    background: black;
+    color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+
+    a {
+        color: white;
+    }
+}
