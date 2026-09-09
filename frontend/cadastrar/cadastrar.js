@@ -21,7 +21,7 @@ async function cadastrarFilme() {
         duration
     }
 
-    const resposta = await fetch("https://crudcompletofilmes-main.vercel.app/create-movies", {
+    const resposta = await fetch("https://crud-filmes-iota.vercel.app/create-movies", {
         method: "POST",
         headers: {
             "Content-type": "application/json"

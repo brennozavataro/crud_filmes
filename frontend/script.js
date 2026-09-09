@@ -1,6 +1,6 @@
 async function buscarFilmes() {
     // através do acesso a rota GET, trazer os filmes e mostrar na tela
-    const resposta = await fetch("https://crudcompletofilmes-main.vercel.app/")
+    const resposta = await fetch("https://crud-filmes-iota.vercel.app/")
     const filmes = await resposta.json()
     const sectionFilmes = document.querySelector(".filmes")
     
@@ -19,7 +19,7 @@ async function buscarFilmes() {
 }
 
 async function apagarFilme(id) {
-    const resposta = await fetch(`https://crudcompletofilmes-main.vercel.app/delete-movies/${id}`, { method: "DELETE" })
+    const resposta = await fetch(`https://crud-filmes-iota.vercel.app/delete-movies/${id}`, { method: "DELETE" })
     const respostaJS = await resposta.json()
 
     alert(respostaJS.message)
