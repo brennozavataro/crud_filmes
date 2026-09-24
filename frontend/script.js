@@ -1,10 +1,14 @@
 async function buscarFilmes() {
-    // através do acesso a rota GET, trazer os filmes e mostrar na tela
-    const resposta = await fetch("https://crud-filmes-iota.vercel.app/")
-    const filmes = await resposta.json()
-    const sectionFilmes = document.querySelector(".filmes")
+    const resposta = await fetch("https://crud-filmes-iota.vercel.app/");
+    const filmes = await resposta.json();
+    const sectionFilmes = document.querySelector(".filmes");
     
+    sectionFilmes.innerHTML = ""; 
+
     filmes.forEach((filme) => {
+        const nameEscaped = (filme.name || '').replace(/'/g, "\\'");
+        const genreEscaped = (filme.genre || '').replace(/'/g, "\\'");
+
         sectionFilmes.innerHTML += `
             <div>
                 <h2>${filme.name}</h2>
@@ -13,22 +17,19 @@ async function buscarFilmes() {
                 <p><strong>Classificação indicativa:</strong> ${filme.ageRating > 0 ? filme.ageRating + ' anos' : 'Livre'}</p>
 
                 <button onclick="apagarFilme(${filme.id})">Apagar</button>
-                <button onclick="atualizarFilme(${filme.id})">Editar</button>
+                <button onclick="atualizarFilme(${filme.id}, '${nameEscaped}', '${genreEscaped}', '${filme.duration}', ${filme.ageRating})">Editar</button>
             </div>
-        `
-    })
+        `;
+    });
 }
 
 async function apagarFilme(id) {
-    const resposta = await fetch(`https://crud-filmes-iota.vercel.app/delete-movies/${id}`, { method: "DELETE" })
-    const respostaJS = await resposta.json()
+    const resposta = await fetch(`https://crud-filmes-iota.vercel.app/delete-movies/${id}`, { method: "DELETE" });
+    const respostaJS = await resposta.json();
 
-    alert(respostaJS.message)
-
-    window.location.reload()
+    alert(respostaJS.message);
+    window.location.reload();
 }
-
-
 
 async function atualizarFilme(id, nameAtual, genreAtual, durationAtual, ageRatingAtual) {
     const name = prompt("Nome do filme:", nameAtual);
@@ -44,7 +45,7 @@ async function atualizarFilme(id, nameAtual, genreAtual, durationAtual, ageRatin
     if (ageRating === null) return;
 
     const resposta = await fetch(
-        `[crud-filmes-iota.vercel.app](https://crud-filmes-iota.vercel.app/update-movies/${id})`,
+        `https://crud-filmes-iota.vercel.app/update-movies/${id}`,
         {
             method: "PUT",
             headers: {
