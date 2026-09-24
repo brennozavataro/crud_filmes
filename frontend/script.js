@@ -13,6 +13,7 @@ async function buscarFilmes() {
                 <p><strong>Classificação indicativa:</strong> ${filme.ageRating > 0 ? filme.ageRating + ' anos' : 'Livre'}</p>
 
                 <button onclick="apagarFilme(${filme.id})">Apagar</button>
+                <button onclick="atualizarFilme(${filme.id})">Editar</button>
             </div>
         `
     })
@@ -27,4 +28,46 @@ async function apagarFilme(id) {
     window.location.reload()
 }
 
-buscarFilmes()
+
+
+async function atualizarFilme(id, nameAtual, genreAtual, durationAtual, ageRatingAtual) {
+    const name = prompt("Nome do filme:", nameAtual);
+    if (name === null) return;
+
+    const genre = prompt("Gênero:", genreAtual);
+    if (genre === null) return;
+
+    const duration = prompt("Duração em minutos:", durationAtual);
+    if (duration === null) return;
+
+    const ageRating = prompt("Classificação indicativa:", ageRatingAtual);
+    if (ageRating === null) return;
+
+    const resposta = await fetch(
+        `[crud-filmes-iota.vercel.app](https://crud-filmes-iota.vercel.app/update-movies/${id})`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                genre,
+                duration: Number(duration),
+                ageRating: Number(ageRating)
+            })
+        }
+    );
+
+    const respostaJS = await resposta.json();
+
+    if (!resposta.ok) {
+        alert(respostaJS.message || "Não foi possível atualizar o filme.");
+        return;
+    }
+
+    alert(respostaJS.message);
+    await buscarFilmes();
+}
+
+buscarFilmes();
