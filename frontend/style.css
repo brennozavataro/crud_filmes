@@ -1,23 +1,415 @@
-header {
-    background: black;
-    color: white;
-    margin-bottom: 20px;
-    padding: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
-    a {
-        color: white;
-    }
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.filmes {
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+:root {
+    --black: #080808;
+    --dark: #101010;
+    --card: #151515;
+    --card-hover: #1c1c1c;
+
+    --border: #292929;
+
+    --text: #f5f5f5;
+    --muted: #969696;
+
+    --gold: #c9a45c;
+    --gold-light: #e0bd78;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(201, 164, 92, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(201, 164, 92, 0.04),
+            transparent 25%
+        ),
+        var(--black);
+
+    color: var(--text);
+
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.04),
+            transparent 40%
+        ),
+        #0b0b0b;
+
+    border-bottom: 1px solid var(--border);
+
+    padding: 32px 6%;
+
+    overflow: hidden;
+}
+
+
+header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background: rgba(201, 164, 92, 0.07);
+
+    filter: blur(80px);
+
+    right: 5%;
+    top: -180px;
+}
+
+
+.header-content {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
     display: flex;
-    flex-wrap: wrap;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.eyebrow {
+    display: block;
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+}
+
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(32px, 5vw, 52px);
+
+    line-height: 1;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+}
+
+
+header p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+header p span {
+    color: var(--gold);
+
+    margin: 0 5px;
+}
+
+
+/* =========================
+   BOTÃO CADASTRAR
+========================= */
+
+nav a {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--black);
+
+    background: var(--gold);
+
+    padding: 14px 20px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+nav a span {
+    font-size: 20px;
+
+    font-weight: 400;
+
+    line-height: 0;
+}
+
+
+nav a:hover {
+    background: var(--gold-light);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(201, 164, 92, 0.18);
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+main {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 55px 6% 80px;
+}
+
+
+.section-header {
+    margin-bottom: 28px;
+}
+
+
+.section-label {
+    display: block;
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+}
+
+
+.section-header h2 {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 30px;
+
+    color: var(--text);
+}
+
+
+/* =========================
+   FILMES
+========================= */
+
+.filmes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(280px, 1fr)
+        );
+
     gap: 20px;
 }
 
-div {
-    border: 1px solid black;
-    width: 300px;
-    height: 200px;
-    padding: 20px;
+
+/* =========================
+   CARD DOS FILMES
+========================= */
+
+.filmes > div {
+    position: relative;
+
+    width: auto;
+
+    min-height: 200px;
+
+    height: auto;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.035),
+            transparent 60%
+        ),
+        var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Linha dourada lateral */
+
+.filmes > div::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 3px;
+
+    height: 100%;
+
+    background: var(--gold);
+
+    transform: scaleY(0);
+
+    transform-origin: bottom;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* Efeito ao passar o mouse */
+
+.filmes > div:hover {
+    transform: translateY(-6px);
+
+    background: var(--card-hover);
+
+    border-color:
+        rgba(201, 164, 92, 0.4);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+.filmes > div:hover::before {
+    transform: scaleY(1);
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 25px 20px;
+    }
+
+
+    .header-content {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    nav {
+        width: 100%;
+    }
+
+
+    nav a {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    main {
+        padding: 40px 20px 60px;
+    }
+
+
+    .filmes {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+
+    .filmes > div {
+        padding: 20px;
+    }
 }

@@ -1,22 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Frontend</title>
-</head>
-<body>
-    <header>
-        <h1>Lista de Filmes - Brenno Sena e Arthur Moreira</h1>
 
-        <nav>
-            <a href="./cadastrar/cadastrar.html">Cadastrar novo filme</a>
-        </nav>
+    <link rel="stylesheet" href="style.css">
+
+    <title>Lista de Filmes</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <div class="header-info">
+                <span class="eyebrow">CATÁLOGO</span>
+
+                <h1>Lista de Filmes</h1>
+
+                <p>
+                    Brenno Sena
+                    <span>×</span>
+                    Arthur Moreira
+                </p>
+            </div>
+
+            <nav>
+                <a href="./cadastrar/cadastrar.html">
+                    <span>+</span>
+                    Cadastrar novo filme
+                </a>
+            </nav>
+
+        </div>
     </header>
 
-    <section class="filmes"></section>
+    <main>
+
+        <section class="section-header">
+            <span class="section-label">COLEÇÃO</span>
+
+            <h2>Filmes cadastrados</h2>
+        </section>
+
+        <section class="filmes"></section>
+
+    </main>
 
     <script src="script.js"></script>
+
 </body>
 </html>
